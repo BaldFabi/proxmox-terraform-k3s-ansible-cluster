@@ -3,6 +3,7 @@ locals {
     public_key = file("~/.ssh/id_rsa.pub")
     k3s_version = "v1.22.5+k3s1"
     k3s_systemd_dir = "/etc/systemd/system"
+    root_password = "Abc1234_"
 }
 
 resource "random_password" "root_password" {
@@ -47,7 +48,7 @@ resource "proxmox_vm_qemu" "k3s_node" {
     connection {
         type = "ssh"
         user = "root"
-        password = "Abc1234_"
+        password = local.root_password
         host = self.default_ipv4_address
     }
 
@@ -84,8 +85,8 @@ node' > k3s-ansible/inventory/k3s_nodes.hosts
                 -i k3s-ansible/inventory/k3s_nodes.hosts                                \
                 -u root                                                                 \
                 -e k3s_version=${local.k3s_version}                                     \
-		-e systemd_dir=${local.k3s_systemd_dir}                                 \
-		-e master_ip=${proxmox_vm_qemu.k3s_node[0].default_ipv4_address}        \
+                -e systemd_dir=${local.k3s_systemd_dir}                                 \
+                -e master_ip=${proxmox_vm_qemu.k3s_node[0].default_ipv4_address}        \
                 k3s-ansible/site.yml
         EOT
     }
