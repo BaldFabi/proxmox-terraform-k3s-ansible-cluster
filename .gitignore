@@ -1,0 +1,6 @@
+k3s-ansible/
+*.tfstate*
+*.tfvars
+.terraform*
+*.out
+
