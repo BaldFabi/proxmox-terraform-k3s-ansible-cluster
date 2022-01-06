@@ -11,7 +11,7 @@ With this [Terraform](https://www.terraform.io) plan you can create one or more 
 
 ## Requirements
 
-1. A template (currently named `debian-11`) within on the Proxmox host (without cloud-init)
+1. A template (currently named `debian-11`) on the Proxmox host (without cloud-init)
 2. The `root` password currently set to `Abc1234_`
 3. A private and public key stored in your home (`id_rsa` and `id_rsa.pub`)
 4. The packages `git` and `ansible` installed
