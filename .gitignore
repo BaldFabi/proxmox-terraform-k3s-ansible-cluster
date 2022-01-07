@@ -3,4 +3,5 @@ k3s-ansible/
 *.tfvars
 .terraform*
 *.out
+/config
 

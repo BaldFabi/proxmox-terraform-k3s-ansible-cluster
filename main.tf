@@ -88,6 +88,7 @@ node' > k3s-ansible/inventory/k3s_nodes.hosts
                 -e systemd_dir=${local.k3s_systemd_dir}                                 \
                 -e master_ip=${proxmox_vm_qemu.k3s_node[0].default_ipv4_address}        \
                 k3s-ansible/site.yml
+            scp root@${proxmox_vm_qemu.k3s_node[0].default_ipv4_address}:~/.kube/config config
         EOT
     }
 }
