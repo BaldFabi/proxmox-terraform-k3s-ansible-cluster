@@ -1,5 +1,4 @@
 locals {
-    count = 3
     public_key = file("~/.ssh/id_rsa.pub")
     k3s_version = "v1.22.5+k3s1"
     k3s_systemd_dir = "/etc/systemd/system"
@@ -7,13 +6,13 @@ locals {
 }
 
 resource "random_password" "root_password" {
-    count = local.count
+    count = var.vm_count
     special = true
     length = 20
 }
 
 resource "proxmox_vm_qemu" "k3s_node" {
-    count = local.count
+    count = var.vm_count
     name = "node${count.index + 1}"
     target_node = var.proxmox_node
     vmid = "8${count.index+1 < 10 ? "0" : "" }${count.index+1}"

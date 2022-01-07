@@ -1,3 +1,9 @@
+variable "vm_count" {
+    type = number
+    default = 3
+    description = "The amount of vms that should be created"
+}
+
 variable "proxmox_server" {
     type = string
 }
