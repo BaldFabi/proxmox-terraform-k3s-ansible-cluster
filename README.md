@@ -4,6 +4,7 @@ With this [Terraform](https://www.terraform.io) plan you can create one or more 
 
 ## Uses
 
+- A template named *debian-11* that was generated using this [repo](https://github.com/BaldFabi/proxmox-packer)
 - [Terraform](https://www.terraform.io)
 - [Ansible](https://www.ansible.com)
 - [telmate/terraform-provider-proxmox](https://github.com/Telmate/terraform-provider-proxmox)
@@ -11,9 +12,9 @@ With this [Terraform](https://www.terraform.io) plan you can create one or more 
 
 ## Requirements
 
-1. A template (currently named `debian-11` and generated using the config within this [repo](https://github.com/BaldFabi/proxmox-packer)) on the Proxmox host (without cloud-init)
+1. A template (currently named `debian-11`) on the Proxmox host (without cloud-init)
 2. The `root` password currently set to `Abc1234_`
-3. A private and public key stored in your home (`id_rsa` and `id_rsa.pub`)
+3. A private and public key stored in your home (`~/.ssh/id_rsa` and `~/.ssh/id_rsa.pub`)
 4. The packages `git` and `ansible` installed
 
 ## Usage
