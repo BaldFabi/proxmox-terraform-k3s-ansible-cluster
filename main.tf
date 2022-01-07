@@ -21,7 +21,7 @@ resource "proxmox_vm_qemu" "k3s_node" {
     boot = "c"
     agent = 1
 
-    clone = "debian-11"
+    clone = "debian-k3s-node"
 
     memory = 4096
     cores = 2
@@ -80,7 +80,7 @@ ${join("\n", slice(proxmox_vm_qemu.k3s_node.*.default_ipv4_address, 1, length(pr
 [k3s_cluster:children]
 master
 node' > k3s-ansible/inventory/k3s_nodes.hosts
-            ansible-playbook                                                            \
+            ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook                                                            \
                 -i k3s-ansible/inventory/k3s_nodes.hosts                                \
                 -u root                                                                 \
                 -e k3s_version=${local.k3s_version}                                     \
